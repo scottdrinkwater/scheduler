@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",     
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types"],                           
+    "esModuleInterop": true,                           
+    "forceConsistentCasingInFileNames": true,          
+    "strict": true,                                    
+    "noImplicitAny": true,                          
+    "strictPropertyInitialization": true,           
+    "alwaysStrict": true,                           
+    "noUnusedLocals": true,                         
+    "noUnusedParameters": true,                     
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "module": "commonjs",                
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "tests"]  
+}
