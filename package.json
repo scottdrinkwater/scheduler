@@ -1,10 +1,10 @@
 {
-  "name": "schedule-helper",
+  "name": "scheduler",
   "version": "1.0.0",
   "description": "A package to help generate schedules",
-  "main": "./src/index.ts",
+  "main": "./src/schedule.ts",
   "type": "module",
-  "author": "drinky08",
+  "author": "scottdrinkwater",
   "license": "MIT",
   "private": true,
   "scripts": {
