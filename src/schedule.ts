@@ -9,7 +9,7 @@ export const Unit = {
 
 export type UnitType = keyof typeof Unit;
 
-export type Period = {
+export type Frequency = {
   measure: number;
   unit: UnitType;
 };
@@ -18,7 +18,7 @@ export type Pattern<TEvent> = {
   event: TEvent;
   startDate: Date;
   endDate?: Date;
-  frequency: Period;
+  frequency: Frequency;
 };
 
 type Occurrence<TEvent> = {
@@ -26,7 +26,7 @@ type Occurrence<TEvent> = {
   date: Date;
 };
 
-const nextOccurrence = (period: Period, date: Date) => {
+const nextOccurrence = (period: Frequency, date: Date) => {
   switch (period.unit) {
     case "day":
       return addDays(date, period.measure);
