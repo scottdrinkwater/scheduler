@@ -15,7 +15,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addDays(startDate, 5);
       const frequency: Frequency = { measure: 1, unit: "day" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
@@ -44,7 +44,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addDays(startDate, 5);
       const frequency: Frequency = { measure: 2, unit: "day" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
@@ -71,7 +71,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addWeeks(startDate, 5);
       const frequency: Frequency = { measure: 1, unit: "week" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
@@ -100,7 +100,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addWeeks(startDate, 5);
       const frequency: Frequency = { measure: 2, unit: "week" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
@@ -127,7 +127,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addMonths(startDate, 5);
       const frequency: Frequency = { measure: 1, unit: "month" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
@@ -156,7 +156,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addMonths(startDate, 5);
       const frequency: Frequency = { measure: 2, unit: "month" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
@@ -183,7 +183,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addYears(startDate, 5);
       const frequency: Frequency = { measure: 1, unit: "year" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
@@ -212,7 +212,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addYears(startDate, 5);
       const frequency: Frequency = { measure: 2, unit: "year" };
-      const pattern: Pattern<typeof event> = {
+      const pattern = {
         event,
         frequency,
         startDate,
