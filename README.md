@@ -1,6 +1,6 @@
 # Scheduler
-
-| Statements                 | Functions                 | Lines             |
+## Build Status
+| Statement Coverage                 | Function Coverage                 | Line Coverage             |
 | --------------------------- | ------------------------- | ----------------- |
 | ![Statements](https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat) | ![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat) | ![Lines](https://img.shields.io/badge/lines-100%25-brightgreen.svg?style=flat) |
 
