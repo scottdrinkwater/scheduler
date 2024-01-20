@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addDays, addMonths, addWeeks, addYears } from "date-fns";
+import { addDays, addMonths, addWeeks, addYears, subDays, subMonths, subWeeks, subYears } from "date-fns";
 import { Frequency, scheduler } from "../src/schedule";
 import { generate } from "../src/utils/array";
 
@@ -24,7 +24,7 @@ describe("schedule.ts", () => {
       const schedule = scheduler().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = schedule.calendar(startDate, (endDate));
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -36,6 +36,33 @@ describe("schedule.ts", () => {
       ]);
       expect(calendar.map((occurrence) => occurrence.event)).toEqual(
         generate(5, () => event)
+      );
+    });
+
+    it("generates events every day, only shows selected", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addDays(startDate, 5);
+      const frequency: Frequency = { measure: 1, unit: "day" };
+      const pattern = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
+
+      // Act
+      const calendar = schedule.calendar(addDays(startDate, 1), subDays(endDate, 1));
+
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-02 12:00:00"),
+        new Date("2023-01-03 12:00:00"),
+        new Date("2023-01-04 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
       );
     });
 
@@ -95,6 +122,33 @@ describe("schedule.ts", () => {
       );
     });
 
+    it("generates events every week, only show selected", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addWeeks(startDate, 5);
+      const frequency: Frequency = { measure: 1, unit: "week" };
+      const pattern = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
+
+      // Act
+      const calendar = schedule.calendar(addWeeks(startDate, 1), subWeeks(endDate, 1));
+
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-08 12:00:00"),
+        new Date("2023-01-15 12:00:00"),
+        new Date("2023-01-22 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
+      );
+    });
+
     it("generates events every 2 weeks", () => {
       // Arrange
       const startDate = new Date("2023-01-01 12:00:00");
@@ -151,6 +205,33 @@ describe("schedule.ts", () => {
       );
     });
 
+    it("generates events every month, only show selected", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addMonths(startDate, 5);
+      const frequency: Frequency = { measure: 1, unit: "month" };
+      const pattern = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
+
+      // Act
+      const calendar = schedule.calendar(addMonths(startDate, 1), subMonths(endDate, 1));
+
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-02-01 12:00:00"),
+        new Date("2023-03-01 12:00:00"),
+        new Date("2023-04-01 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
+      );
+    });
+
     it("generates events every 2 months", () => {
       // Arrange
       const startDate = new Date("2023-01-01 12:00:00");
@@ -204,6 +285,33 @@ describe("schedule.ts", () => {
       ]);
       expect(calendar.map((occurrence) => occurrence.event)).toEqual(
         generate(5, () => event)
+      );
+    });
+
+    it("generates events every year, only show selected", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addYears(startDate, 5);
+      const frequency: Frequency = { measure: 1, unit: "year" };
+      const pattern = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
+
+      // Act
+      const calendar = schedule.calendar(addYears(startDate, 1), subYears(endDate, 1));
+
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2024-01-01 12:00:00"),
+        new Date("2025-01-01 12:00:00"),
+        new Date("2026-01-01 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
       );
     });
 
