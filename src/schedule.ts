@@ -28,14 +28,14 @@ type Occurrence<TEvent> = {
 
 const nextOccurrence = (period: Frequency, date: Date) => {
   switch (period.unit) {
-    case "day":
-      return addDays(date, period.measure);
-    case "week":
-      return addWeeks(date, period.measure);
-    case "month":
-      return addMonths(date, period.measure);
-    case "year":
-      return addYears(date, period.measure);
+  case "day":
+    return addDays(date, period.measure);
+  case "week":
+    return addWeeks(date, period.measure);
+  case "month":
+    return addMonths(date, period.measure);
+  case "year":
+    return addYears(date, period.measure);
   }
 };
 
