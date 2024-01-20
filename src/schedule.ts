@@ -85,11 +85,24 @@ type Schedule<TEvent> = {
   patterns: Pattern<TEvent>[];
 };
 
+// The scheduler factory.
+type Scheduler<TEvent> = {
+  add: (pattern: Pattern<TEvent>) => Scheduler<TEvent>;
+  get: () => Schedule<TEvent>;
+  calendar: (startDate: Date, endDate: Date) => Occurrence<TEvent>[];
+}
+
+/**
+ * A factory to generate a schedule.
+ * 
+ * @param {Schedule<TEvent>} schedule 
+ * @returns 
+ */
 export const scheduler = <TEvent>(
   schedule: Schedule<TEvent> = { patterns: [] }
-) => {
+): Scheduler<TEvent> => {
   return {
-    add: (pattern: Pattern<TEvent>) => {
+    add: (pattern: Pattern<TEvent>): Scheduler<TEvent> => {
       schedule.patterns.push(pattern);
 
       return scheduler(schedule);
