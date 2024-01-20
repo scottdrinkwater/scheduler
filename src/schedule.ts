@@ -72,7 +72,7 @@ const occurrences = <TEvent>(
   ) {
     const event = pattern.event;
     const occurrence: Occurrence<TEvent> = { event, date };
-    if (startDate >= pattern.startDate) {
+    if (date >= startDate) {
       occurrences.push(occurrence);
     }
   }
