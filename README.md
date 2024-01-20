@@ -111,60 +111,60 @@ Would output:
 ```json
 [
     {
-        event: {
-            title: "My first event.",
-            description: "This happens daily."
+        "event": {
+            "title": "My first event.",
+            "description": "This happens daily."
         },
-        date: "2023-01-01T12:00:00.000Z"
+        "date": "2023-01-01T12:00:00.000Z"
     },
     {
-        event: {
-            title: "My second event.",
-            description: "This happens every 2 days."
+        "event": {
+            "title": "My second event.",
+            "description": "This happens every 2 days."
         },
-        date: "2023-01-01T12:00:00.000Z"
+        "date": "2023-01-01T12:00:00.000Z"
     },
     {
-        event: {
-            title: "My first event.",
-            description: "This happens daily."
+        "event": {
+            "title": "My first event.",
+            "description": "This happens daily."
         },
-        date: "2023-01-02T12:00:00.000Z"
+        "date": "2023-01-02T12:00:00.000Z"
     },
     {
-        event: {
-            title: "My first event.",
-            description: "This happens daily."
+        "event": {
+            "title": "My first event.",
+            "description": "This happens daily."
         },
-        date: "2023-01-03T12:00:00.000Z"
+        "date": "2023-01-03T12:00:00.000Z"
     },
         {
-        event: {
-            title: "My second event.",
-            description: "This happens every 2 days."
+        "event": {
+            "title": "My second event.",
+            "description": "This happens every 2 days."
         },
-        date: "2023-01-03T12:00:00.000Z"
+        "date": "2023-01-03T12:00:00.000Z"
     },
     {
-        event: {
-            title: "My first event.",
-            description: "This happens daily."
+        "event": {
+            "title": "My first event.",
+            "description": "This happens daily."
         },
-        date: "2023-01-04T12:00:00.000Z"
+        "date": "2023-01-04T12:00:00.000Z"
     },
     {
-        event: {
-            title: "My first event.",
-            description: "This happens daily."
+        "event": {
+            "title": "My first event.",
+            "description": "This happens daily."
         },
-        date: "2023-01-05T12:00:00.000Z"
+        "date": "2023-01-05T12:00:00.000Z"
     },
     {
-        event: {
-            title: "My second event.",
-            description: "This happens every 2 days."
+        "event": {
+            "title": "My second event.",
+            "description": "This happens every 2 days."
         },
-        date: "2023-01-05T12:00:00.000Z"
+        "date": "2023-01-05T12:00:00.000Z"
     }
 ]
 ```
