@@ -88,7 +88,6 @@ type Schedule<TEvent> = {
 // The scheduler factory.
 type Scheduler<TEvent> = {
   add: (pattern: Pattern<TEvent>) => Scheduler<TEvent>;
-  get: () => Schedule<TEvent>;
   calendar: (startDate: Date, endDate: Date) => Occurrence<TEvent>[];
 }
 
@@ -107,7 +106,6 @@ export const scheduler = <TEvent>(
 
       return scheduler(schedule);
     },
-    get: (): Schedule<TEvent> => schedule,
     calendar: (startDate: Date, endDate: Date): Occurrence<TEvent>[] => {
       return schedule.patterns.flatMap((pattern) =>
         occurrences(pattern, startDate, endDate)

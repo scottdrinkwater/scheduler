@@ -15,16 +15,15 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addDays(startDate, 5);
       const frequency: Frequency = { measure: 1, unit: "day" };
-      const pattern = {
-        event,
-        frequency,
+      const schedule = scheduler().add({
         startDate,
         endDate,
-      };
-      const schedule = scheduler().add(pattern);
+        event,
+        frequency
+      });
 
       // Act
-      const calendar = schedule.calendar(startDate, (endDate));
+      const calendar = schedule.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
