@@ -9,7 +9,6 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "no-unused-vars": "warn",
         "semi": [
             1,
             "always"
