@@ -1,5 +1,8 @@
-import { describe, it, expect } from "vitest";
-import { schedule } from "../src/schedule";
+import { describe, expect, it } from "vitest";
+import { addDays, addMonths, addWeeks, addYears } from "date-fns";
+import { Period } from "../src/date";
+import { Pattern, scheduler } from "../src/schedule";
+import { generate } from "../src/utils/array";
 
 describe("schedule.ts", () => {
   const event = {
@@ -7,131 +10,229 @@ describe("schedule.ts", () => {
     description: "Oh what a wonderful event this shall be.",
   };
 
-  it("should occur every day for 1 day", () => {
-    // Arrange
-    const date = new Date();
+  describe("calendar", () => {
+    it("generates events every day", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addDays(startDate, 5);
+      const frequency: Period = { measure: 1, unit: "day" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "day").for(1, "day");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(1);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("day");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("day");
-  });
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2023-01-02 12:00:00"),
+        new Date("2023-01-03 12:00:00"),
+        new Date("2023-01-04 12:00:00"),
+        new Date("2023-01-05 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(5, () => event)
+      );
+    });
 
-  it("should occur every week for 1 week", () => {
-    // Arrange
-    const date = new Date();
+    it("generates events every 2 days", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addDays(startDate, 5);
+      const frequency: Period = { measure: 2, unit: "day" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "week").for(1, "week");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(1);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("week");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("week");
-  });
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2023-01-03 12:00:00"),
+        new Date("2023-01-05 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
+      );
+    });
 
-  it("should occur every month for 1 month", () => {
-    // Arrange
-    const date = new Date();
+    it("generates events every week", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addWeeks(startDate, 5);
+      const frequency: Period = { measure: 1, unit: "week" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "month").for(1, "month");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(1);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("month");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("month");
-  });
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2023-01-08 12:00:00"),
+        new Date("2023-01-15 12:00:00"),
+        new Date("2023-01-22 12:00:00"),
+        new Date("2023-01-29 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(5, () => event)
+      );
+    });
 
-  it("should occur every year for 1 year", () => {
-    // Arrange
-    const date = new Date();
+    it("generates events every 2 weeks", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addWeeks(startDate, 5);
+      const frequency: Period = { measure: 2, unit: "week" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "year").for(1, "year");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(1);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("year");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("year");
-  });
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2023-01-15 12:00:00"),
+        new Date("2023-01-29 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
+      );
+    });
 
-  it("should occur every day for 1 week", () => {
-    // Arrange
-    const date = new Date();
+    it("generates events every month", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addMonths(startDate, 5);
+      const frequency: Period = { measure: 1, unit: "month" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "day").for(1, "week");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(1);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("week");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("day");
-  });
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2023-02-01 12:00:00"),
+        new Date("2023-03-01 12:00:00"),
+        new Date("2023-04-01 12:00:00"),
+        new Date("2023-05-01 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(5, () => event)
+      );
+    });
 
-  it("should occur every week for 1 month", () => {
-    // Arrange
-    const date = new Date();
+    it("generates events every 2 months", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addMonths(startDate, 5);
+      const frequency: Period = { measure: 2, unit: "month" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "month").for(1, "month");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(1);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("month");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("month");
-  });
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2023-03-01 12:00:00"),
+        new Date("2023-05-01 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
+      );
+    });
 
-  it("should occur every month for 1 year", () => {
-    // Arrange
-    const date = new Date();
+    it("generates events every year", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addYears(startDate, 5);
+      const frequency: Period = { measure: 1, unit: "year" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "year").for(1, "year");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(1);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("year");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("year");
-  });
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2024-01-01 12:00:00"),
+        new Date("2025-01-01 12:00:00"),
+        new Date("2026-01-01 12:00:00"),
+        new Date("2027-01-01 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(5, () => event)
+      );
+    });
 
-  it("should occur every year for 5 years", () => {
-    // Arrange
-    const date = new Date();
+    it("generates events every 2 years", () => {
+      // Arrange
+      const startDate = new Date("2023-01-01 12:00:00");
+      const endDate = addYears(startDate, 5);
+      const frequency: Period = { measure: 2, unit: "year" };
+      const pattern: Pattern<typeof event> = {
+        event,
+        frequency,
+        startDate,
+        endDate,
+      };
+      const schedule = scheduler().add(pattern);
 
-    // Act
-    const newSchedule = schedule(date);
-    newSchedule.add(event).every(1, "year").for(5, "year");
+      // Act
+      const calendar = schedule.calendar(startDate, endDate);
 
-    // Assert
-    expect(newSchedule.startDate).toBe(date);
-    expect(newSchedule.patterns[0].duration?.measure).toBe(5);
-    expect(newSchedule.patterns[0].duration?.unit).toBe("year");
-    expect(newSchedule.patterns[0].occurs?.measure).toBe(1);
-    expect(newSchedule.patterns[0].occurs?.unit).toBe("year");
+      // Assert
+      expect(calendar.map((occurrence) => occurrence.date)).toEqual([
+        new Date("2023-01-01 12:00:00"),
+        new Date("2025-01-01 12:00:00"),
+        new Date("2027-01-01 12:00:00"),
+      ]);
+      expect(calendar.map((occurrence) => occurrence.event)).toEqual(
+        generate(3, () => event)
+      );
+    });
   });
 });
