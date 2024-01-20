@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { addDays, addMonths, addWeeks, addYears } from "date-fns";
-import { Pattern, Frequency, scheduler } from "../src/schedule";
+import { Frequency, scheduler } from "../src/schedule";
 import { generate } from "../src/utils/array";
 
 describe("schedule.ts", () => {
