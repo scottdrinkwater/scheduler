@@ -1,6 +1,6 @@
 {
-  "name": "scheduler",
-  "version": "1.0.0",
+  "name": "appointly",
+  "version": "1.0.1",
   "description": "A package to help generate schedules",
   "main": "./src/schedule.ts",
   "type": "module",

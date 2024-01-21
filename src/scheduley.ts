@@ -97,14 +97,14 @@ type Scheduler<TEvent> = {
  * @param {Schedule<TEvent>} schedule 
  * @returns 
  */
-export const scheduler = <TEvent>(
+export const scheduley = <TEvent>(
   schedule: Schedule<TEvent> = { patterns: [] }
 ): Scheduler<TEvent> => {
   return {
     add: (pattern: Pattern<TEvent>): Scheduler<TEvent> => {
       schedule.patterns.push(pattern);
 
-      return scheduler(schedule);
+      return scheduley(schedule);
     },
     calendar: (startDate: Date, endDate: Date): Occurrence<TEvent>[] => {
       return schedule.patterns.flatMap((pattern) =>

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { addDays, addMonths, addWeeks, addYears, subDays, subMonths, subWeeks, subYears } from "date-fns";
-import { Frequency, scheduler } from "../src/schedule";
+import { Frequency, scheduley } from "../src/scheduley";
 import { generate } from "../src/utils/array";
 
-describe("schedule.ts", () => {
+describe("scheduley.ts", () => {
   const event = {
     title: "A Wonderful Event",
     description: "Oh what a wonderful event this shall be.",
@@ -15,7 +15,7 @@ describe("schedule.ts", () => {
       const startDate = new Date("2023-01-01 12:00:00");
       const endDate = addDays(startDate, 5);
       const frequency: Frequency = { measure: 1, unit: "day" };
-      const schedule = scheduler().add({
+      const scheduler = scheduley().add({
         startDate,
         endDate,
         event,
@@ -23,7 +23,7 @@ describe("schedule.ts", () => {
       });
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -49,10 +49,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(addDays(startDate, 1), subDays(endDate, 1));
+      const calendar = scheduler.calendar(addDays(startDate, 1), subDays(endDate, 1));
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -76,10 +76,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -103,10 +103,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -132,10 +132,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(addWeeks(startDate, 1), subWeeks(endDate, 1));
+      const calendar = scheduler.calendar(addWeeks(startDate, 1), subWeeks(endDate, 1));
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -159,10 +159,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -186,10 +186,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -215,10 +215,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(addMonths(startDate, 1), subMonths(endDate, 1));
+      const calendar = scheduler.calendar(addMonths(startDate, 1), subMonths(endDate, 1));
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -242,10 +242,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -269,10 +269,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -298,10 +298,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(addYears(startDate, 1), subYears(endDate, 1));
+      const calendar = scheduler.calendar(addYears(startDate, 1), subYears(endDate, 1));
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
@@ -325,10 +325,10 @@ describe("schedule.ts", () => {
         startDate,
         endDate,
       };
-      const schedule = scheduler().add(pattern);
+      const scheduler = scheduley().add(pattern);
 
       // Act
-      const calendar = schedule.calendar(startDate, endDate);
+      const calendar = scheduler.calendar(startDate, endDate);
 
       // Assert
       expect(calendar.map((occurrence) => occurrence.date)).toEqual([
