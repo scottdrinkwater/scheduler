@@ -2,7 +2,7 @@
   "name": "scheduley",
   "version": "1.0.1",
   "description": "A package to help generate schedules",
-  "main": "./src/schedule.ts",
+  "main": "./src/scheduley.ts",
   "type": "module",
   "author": "scottdrinkwater",
   "license": "MIT",
