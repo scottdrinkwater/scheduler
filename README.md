@@ -7,11 +7,11 @@
 ## Installation
 NPM:
 ```bash
-npm i scottdrinkwater/scheduler --save
+npm i scheduley --save
 ```
 Yarn:
 ```bash
-yarn add scottdrinkwater/scheduler
+yarn add scheduley
 ```
 
 ## Usage
