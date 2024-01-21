@@ -17,18 +17,18 @@ yarn add scheduley
 ## Usage
 
 ### Methods
-- [`scheduler().add(pattern)`](#Add)
-- [`scheduler().calendar()`](#Calendar)
+- [`scheduley().add(pattern)`](#Add)
+- [`scheduley().calendar()`](#Calendar)
 
 #### Add
-The `scheduler().add(pattern)` method takes a [`Pattern`](#Pattern) as a parameter and adds it to the schedule. A [pattern](#Pattern) describes the frequency at which an event occurs and how long its occurs for. 
+The `scheduley().add(pattern)` method takes a [`Pattern`](#Pattern) as a parameter and adds it to the schedule. A [pattern](#Pattern) describes the frequency at which an event occurs and how long its occurs for. 
 
 **Examples:**
 
 An event which occurs ever day indefinitely:
 
 ```ts
-scheduler().add({
+scheduley().add({
     startDate: new Date(),
     frequency: {
         measure: 1,
@@ -43,7 +43,7 @@ scheduler().add({
 
 An event which occurs every 2 weeks indefinitely:
 ```ts
-scheduler().add({
+scheduley().add({
     startDate: new Date(),
     frequency: {
         measure: 2,
@@ -58,7 +58,7 @@ scheduler().add({
 
 An event which occurs every 6 months between two dates:
 ```ts
-scheduler().add({
+scheduley().add({
     startDate: new Date('2023-01-01 12:00:00'),
     endDate: new Date('2025-01-01 12:00:00'),
     frequency: {
@@ -74,7 +74,7 @@ scheduler().add({
 
 #### Calendar
 
-The `scheduler().calendar(startDate, endDate)` method takes two [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) parameters and generates an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of [`Occurrence`](#Occurrence)s which describes all occurrences of events in the date range.
+The `scheduley().calendar(startDate, endDate)` method takes two [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) parameters and generates an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of [`Occurrence`](#Occurrence)s which describes all occurrences of events in the date range.
 
 **Example:**
 
@@ -104,7 +104,7 @@ const event2 = {
     }
 }
 
-const schedule = scheduler()
+const schedule = scheduley()
     .add(event1)
     .add(event2)
 
