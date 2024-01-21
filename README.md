@@ -1,4 +1,4 @@
-# Scheduler
+# Scheduley
 ## Build Status
 | Statement Coverage                 | Function Coverage                 | Line Coverage             |
 | --------------------------- | ------------------------- | ----------------- |

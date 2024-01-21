@@ -1,5 +1,5 @@
 {
-  "name": "scheduley",
+  "name": "ts-scheduley",
   "version": "1.0.1",
   "description": "A package to help generate schedules",
   "main": "./src/scheduley.ts",
